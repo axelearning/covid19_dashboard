@@ -1,0 +1,330 @@
+
+
+body{
+    background-color: #f5f6fa;
+    overflow-x: hidden;
+}
+
+/* principal container for all display*/
+
+/*.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: -0.50rem;
+    
+}*/
+
+/*Header main title*/
+/*.header-container{
+    background:rgb(249, 249, 249);
+    border-radius: 0%;
+}
+.header{
+    font-size: 1.12em;
+    width: 100%;
+    display: flex;
+    height: 5vh;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+}
+
+*/
+/*.header-date{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    font-size: 1.9em!important;
+}
+
+.title{
+    font-size: 1.9em!important;
+}
+    */
+/*count tabs & filter */
+
+/*.tabs-filter-container{
+    margin-top: -0.5rem;
+    margin-bottom: -0.7rem
+}*/
+
+/*.tabs{
+    padding: 0;
+    margin: 0 1rem 0 1rem;
+    width: 50%;
+}
+*/
+.confirmed-case::after{
+    display: flex;
+    justify-content: center;
+    content: 'cas';
+    color: #333
+}
+.confirmed-death::after{
+    display: flex;
+    justify-content: center;
+    content: 'morts';
+    color: #333
+}
+
+ /*
+ Tabs style
+ count selected and count card hover state font-color 
+ 
+ */
+
+.count-selected-case::after,
+.count-selected-death::after,
+.count-card:hover::after{
+    color: white;
+    background: transparent;
+}
+
+.count-card{
+    background: #000;
+    width: 100%; 
+    height : 120px; 
+    display:flex; 
+    flex-direction:column;
+    font-size:1.65em;
+    align-items:center; 
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius:.25rem;
+    margin: 0 auto;
+    border: none!important;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.12), 0 5px 5px rgba(0,0,0,0.12);
+    transition: all .3s ease-in-out !important;
+    border-radius: 0%;
+} 
+
+.count-card:hover{
+    transform: scale(1.02);
+    box-shadow: 0 10px 10px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.12);
+}
+
+
+.count-selected{
+    color:white!important;
+    background-color: rgba(21, 99, 255,0.90)!important;
+}
+
+ /*tabs hover state and backgrounds*/
+ 
+.count-selected-case,
+.count-card.confirmed-case:hover{
+    color: white!important;
+    background-color: rgba(21, 99, 255,0.90);
+}
+
+
+.count-selected-death,
+.count-card.confirmed-death:hover{
+    color: white!important;
+    background-color: rgb(237, 29, 48)!important;
+}
+
+/*
+filter card style 
+*/
+
+/*.filter-card{
+    box-shadow: 0 5px 5px rgba(0,0,0,0.12), 0 5px 5px rgba(0,0,0,0.12);
+    margin-right: 30px;
+    height: 120px;
+    width: 100%;
+    background: rgb(249, 249, 249);
+    border: none;
+    border-radius: 0%;
+
+    
+}*/
+/*.country-dropdown-el{
+    margin-top: .5rem;
+}
+*/
+/* 
+map & graph display style
+*/
+
+
+
+
+/* Graphs layout */
+
+/*.graphs-container{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.graph-card{
+    height: 200px;    
+    width: 100%;
+    border-radius: 0%;
+
+}
+
+
+.graphs{
+    margin-top: 1.30rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+}
+
+
+.map{
+    margin-top: 1.2rem;
+    height: 405px;
+    width: 100%;
+}
+
+.top-10-graph{
+    height: 100%;
+    width: 100%;
+    
+}
+
+.new{
+    width: 100%;
+    height: 100%;
+}
+
+.new-case-card{
+    margin-top: 1.2rem;
+}
+
+
+.total-case-card{
+    margin-top: 0.5rem;
+}
+
+.top-10-card{
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.total_case_plot{
+    width: 100%;
+    height: 100%;
+}
+
+
+.footer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background:#EDF2F3;
+    width: 100%;
+    height: 5vh;
+    
+}*/
+
+
+/*media queries for responsiveness*/
+
+
+/*@media screen and (max-width: 800px) {
+
+    .main-container{
+        width: 100%;
+        display: block;
+        margin: auto;
+    }
+
+    .header-container{
+        width: 100%;
+        height: 25vh;
+        margin: 0 1rem 0 1rem;
+        margin: auto;
+    }
+
+    .header{
+        margin: 0 2rem;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tabs{
+        
+        padding: 0;
+        margin: 0;
+        width: 50%;
+    }
+
+    .count-card{
+        background: #fff;
+        width: 90%; 
+        height : 140px; 
+        display:flex; 
+        flex-direction:column;
+        font-size:1.65em;
+        align-items:center; 
+        border: 1px solid rgba(0,0,0,.125);
+        padding: 0 0 0 2rem;
+        border-radius:.25rem;
+        margin: 0 0 0 3rem;
+        border: none!important;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.12), 0 5px 5px rgba(0,0,0,0.12);
+        
+    } 
+
+    #graph-display{
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+    
+
+    .map{
+        margin: 0 auto;
+        height: 800px;
+        width: 70%!important;
+
+    }
+
+    .graphs-container{
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+
+    .graph-card{
+        margin-top: 2rem;
+        height: 600px;
+        width: 100%;
+    }
+   
+
+    
+  }
+
+  @media screen and (min-width: 1600px){
+
+    .footer{
+        font-size: 1.2rem;
+        margin-top: 0.3rem;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background: #EDF2F3;
+        width: 100%;
+        height: 6vh;    
+    }
+
+    
+  }*/

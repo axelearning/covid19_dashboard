@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source='/Users/axel/Agensit/covid19/*'
+destination='/Users/axel/Agensit/heroku/covid_19_app'
+
+# copy and past change from covid19's folder to heroku_deployement's folder
+cp -vr $source $destination
+
+# update the code and redeploy
+cd $destination
+date="$(date +'%m/%d/%Y')"
+git add .
+git commit -m '$date'
+git  push heroku master
