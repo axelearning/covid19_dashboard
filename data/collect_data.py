@@ -13,7 +13,7 @@ def reshape_df(df, state='Confirmed'):
     return df
 
 
-def collect_data():
+def collect_data(saving_path):
     df_confirmed = pd.read_csv(URL_CONFIRMED)
     df_death = pd.read_csv(URL_DEATH)
 
@@ -30,7 +30,7 @@ def collect_data():
     df_covid19.drop(columns='Country/Region', inplace=True)
     df_covid19.rename(columns={'Province/State': 'State'}, inplace=True)
 
-    df_covid19.to_csv("spreading_covid19.csv", index=False)
+    df_covid19.to_csv(saving_path, index=False)
 
 
 if __name__ == '__main__':

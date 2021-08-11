@@ -1,4 +1,6 @@
+from flask_caching import Cache
 from helper.utils import prettify_number, format_date
+from data.collect_data import collect_data
 import helper.dash_utilities as du
 import collections
 import os
@@ -20,13 +22,33 @@ import plotly.express as px
 import plotly.io as pio
 pio.templates.default = "plotly_white"
 
+
 load_dotenv()
 MAPBOX_TOKEN = os.environ.get('MAPBOX_TOKEN')
 
 DEFAULT_MARGIN = dict(l=10, r=10, t=10, b=10)
 
-# Load the file
+EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP, "assets/main.css"]
+app = Dash(__name__, external_stylesheets=EXTERNAL_STYLESHEETS)
+server = app.server
+
+# Refresh and cache the data every H hours
+cache = Cache(server, config={
+    'CACHE_TYPE': 'filesystem',
+    'CACHE_DIR': 'cache-directory'
+})
+HOURS = 24
+TIMEOUT = HOURS*60*60
 FILE_PATH = 'data/spreading_covid19.csv'
+
+
+@cache.memoize(timeout=TIMEOUT)
+def refresh_data(FILE_PATH):
+    collect_data(saving_path=FILE_PATH)
+    return True
+
+
+# Load the file
 covid19 = pd.read_csv(FILE_PATH)
 countries = covid19['State'].unique()
 dates = covid19['Date'].unique()
@@ -40,11 +62,6 @@ BLUE = '#2e72ff'
 GREY = "#6c757d"
 colors = px.colors.qualitative.Plotly
 colors = px.colors.qualitative.Plotly * int(len(countries)/len(colors)+1)
-
-EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP, "assets/main.css"]
-app = Dash(__name__, external_stylesheets=EXTERNAL_STYLESHEETS)
-server = app.server
-
 
 '''-------------------------------------------------------------------------------------------
                                         DASH COMPONENTS
@@ -80,7 +97,6 @@ slider = dcc.RangeSlider(
     value=[0, len(dates) - 1],
     className="my-3")
 
-# dropdown
 dropdown = dcc.Dropdown(
     id='country_dropdown',
     options=[{'label': country, 'value': country} for country in countries],
@@ -89,7 +105,6 @@ dropdown = dcc.Dropdown(
     placeholder='Choisir un pays',
     className="my-3 mx-2")
 
-# tabs
 tabs = dcc.Tabs(
     id="tabs",
     value='Confirmed',
@@ -122,9 +137,11 @@ filters = dbc.Row(
     className="m-3",
     align="top"),
 
-# FIGURES
-# -------------------------------------------------------------------------------------------------------
-# Map
+'''-------------------------------------------------------------------------------------------
+                                            LAYOUT
+   -------------------------------------------------------------------------------------------
+'''
+
 remove_buton = ["resetViewMapbox", "", "toImage", "", "", "toggleHover"]
 config = {'modeBarButtonsToRemove': remove_buton,
           'showAxisDragHandles': False, "displayModeBar": True, "displaylogo": False}
@@ -141,11 +158,6 @@ card2.format(row_number=2, width=6)
 card3.format(row_number=2, width=6)
 card4.format(row_number=1, width=6)
 cards = [card1, card4, card3, card2]
-
-'''-------------------------------------------------------------------------------------------
-                                            LAYOUT
-   -------------------------------------------------------------------------------------------
-'''
 
 # create the containers
 container = du.Container(cards=cards).create()
@@ -202,6 +214,17 @@ def update_dropwdown(click, selected):
     ]
 )
 def global_update(slider_date, tabs_type, country_dropdown):
+    # refresh data every H hours
+    if refresh_data(FILE_PATH):
+        covid19 = pd.read_csv(FILE_PATH)
+        countries = covid19['State'].unique()
+        dates = covid19['Date'].unique()
+        last_date = dates.max()
+        cases_counter = covid19.loc[covid19['Date']
+                                    == last_date, 'Confirmed'].sum()
+        death_counter = covid19.loc[covid19['Date']
+                                    == last_date, 'Death'].sum()
+
     # 0. DESIGN
     # --------------------------------------------------------
     # date panel (top - right)
@@ -232,8 +255,6 @@ def global_update(slider_date, tabs_type, country_dropdown):
         clicked_country = []
     # filtre by country
     df = covid19.copy()
-
-    # TODO: delete negative death values
 
     # filtre by date
     min_range_slider = df.loc[df['Date'] ==
@@ -472,4 +493,4 @@ def global_update(slider_date, tabs_type, country_dropdown):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=False)
