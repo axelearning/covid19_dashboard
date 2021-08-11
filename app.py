@@ -41,7 +41,7 @@ GREY = "#6c757d"
 colors = px.colors.qualitative.Plotly
 colors = px.colors.qualitative.Plotly * int(len(countries)/len(colors)+1)
 
-EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP]
+EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP, "assets/main.css"]
 app = Dash(__name__, external_stylesheets=EXTERNAL_STYLESHEETS)
 server = app.server
 
