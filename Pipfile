@@ -10,6 +10,7 @@ pandas = "*"
 python-dotenv = "*"
 dash-bootstrap-components = "*"
 flask-caching = "*"
+gunicorn = "*"
 
 [dev-packages]
 
