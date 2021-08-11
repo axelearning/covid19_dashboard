@@ -9,6 +9,7 @@ import numpy as np
 from dateutil.parser import parse
 
 import dash
+from dash import Dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
@@ -41,7 +42,7 @@ colors = px.colors.qualitative.Plotly
 colors = px.colors.qualitative.Plotly * int(len(countries)/len(colors)+1)
 
 EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP]
-app = dash.Dash(__name__, external_stylesheets=EXTERNAL_STYLESHEETS)
+app = Dash(__name__, external_stylesheets=EXTERNAL_STYLESHEETS)
 server = app.server
 
 

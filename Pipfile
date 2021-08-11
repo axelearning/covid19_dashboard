@@ -9,6 +9,7 @@ numpy = "*"
 pandas = "*"
 python-dotenv = "*"
 dash-bootstrap-components = "*"
+flask-caching = "*"
 
 [dev-packages]
 

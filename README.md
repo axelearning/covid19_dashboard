@@ -1,10 +1,23 @@
-# COVID-19 Confirmed Cases Dashboard 
-↳ [dashboard](https://dash-app-covid19.herokuapp.com/) 
-The data have been scrape from this [github page](https://github.com/CSSEGISandData/COVID-19)
-# Whate I Learned ?
+# Dashboard Covid19 🦠
+À travers ce projet j'ai créé un tableau de bord qui suit la propagation de la covid19. 
 
-- **Data Analysis**, I increased my skills in processing and merging messy data into a structured and clean form  
-- **Data Visualisation**, I discover how to create dynamics visualisation with Dash.
+Les données sont récuperer quotidiennement depuis ce [répertoire](https://github.com/CSSEGISandData/COVID-19) Github. Puis elles sont traiter afin d'alimententer les differentes visualisation du tableau de bord
 
-- **DevOps**, I learned to deploy my dashboard on a Heroku server. I also created a automate bash script  which update the data every day
+<h3 align="left">
+  <span>👉 </span>
+  <a href="URL">Le dashboard</a>
+</h3>
+<br>
 
+<p align="center">
+  <img src='img/dashboard.gif' alt="GIF du dashboard" width=750>
+</p>
+
+
+## **Qu'est ce que j'ai appris ?**
+- créer des visualisation dynamique avec Dash et Plotly
+- déployer mon application sur heroku
+- utiliser Bootstrap et Css afin d'embelir le dashboard
+
+## **Pourquoi ce projet ?**
+En plein pendant le premier confinement (Mars 2020), j'ai decidé de créer un tableau de bord pour permettre à mes porches et moi de pouvoir explorer l'évolution du virus. 
