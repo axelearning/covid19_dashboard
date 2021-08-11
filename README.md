@@ -5,12 +5,12 @@ Les données sont récuperer quotidiennement depuis ce [répertoire](https://git
 
 <h3 align="left">
   <span>👉 </span>
-  <a href="URL">Le dashboard</a>
+  <a href="URL">voir le dashboard</a>
 </h3>
 <br>
 
 <p align="center">
-  <img src='img/dashboard.gif' alt="GIF du dashboard" width=750>
+  <img src='assets/dashboard.gif' alt="GIF du dashboard" width=750>
 </p>
 
 
