@@ -1,0 +1,125 @@
+body{
+    background-color: #FBFBFB;
+    margin: 25px;
+}
+
+.countainer{
+    height: 100vh;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+
+/* TITLE */
+.title{
+    color: #2C2C31;
+    font-size: 60px;
+    text-align: center;
+    justify-content: center;
+    margin: 25px;
+}
+
+/* DROPDOWN */
+.filters{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: #2C2C31;
+}
+#country_dropdown{
+    width: 40%;
+    color: #2C2C31;
+    margin-right: 5px;
+}
+
+#country_dropdown .Select-value {
+    color: #2C2C31;
+    border: 0px solid #79797928;
+    background: #2c2c311f;
+  }
+
+#country_dropdown .Select-menu-outer {
+    color: #2C2C31;
+    background: white;
+  }  
+
+#country_dropdown .Select-value-icon:hover {
+    color: red;
+  }  
+#country_dropdown .Select-value-icon {
+    border-right:0px;
+  }
+
+#time_dropdown{
+    /* margin: auto; */
+    width: 20%;
+    color: #2C2C31;
+}
+
+
+.Cards-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.card{
+    background-color: white;
+    border: 0.2px solid #79797928;
+    margin: 0px 20px 20px 20px;
+    padding: 2px;
+}
+
+.card[id=detailed_plot]{
+    background-color: white;
+    border: 0.2px solid #79797928;
+    margin: 10px;
+    padding: 2px;
+}
+
+.counter-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.counter-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border: 0.2px solid #79797928;
+    border-radius: .25rem;
+    padding: 20px;
+    margin: 10px;
+}
+
+
+/* .Number-deaths{
+    color: #ed1d30;
+}
+
+.Number-cases{
+    color: #2e72ff;
+} */
+
+#one_line_report{
+    text-align: center;
+    font-size: 25px;
+    margin-top: 20px;
+    color: #2C2C31;
+    font-family: 'Inter', 'Arial';
+}
+
+
+
+
+
+
+
+
+

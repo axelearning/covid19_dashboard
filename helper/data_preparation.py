@@ -1,19 +1,25 @@
-from dateutil.parser import parse
+import pandas as pd
 
 
-def filter_by_dates(df, start_date, end_date):
-    return df[(df['Date'] > start_date) & (df['Date'] < end_date)]
+def filter_df(df, countries, time_range):
+    df = filter_by_country(df, countries)
+    return filter_by_dates(df, time_range)
 
 
-def filter_by_country(df, country_dropdown):
-    if country_dropdown:
-        return df[df['State'].isin(country_dropdown)]
+def filter_by_country(df, countries):
+    if countries:
+        return df[df['State'].isin(countries)]
+    else:
+        return df
 
 
-def filter_df(df, start_date, end_date, country_dropdown):
-    if country_dropdown:
-        df = filter_by_country(df, country_dropdown)
-    return filter_by_dates(df, start_date, end_date)
+def filter_by_dates(df, time_range):
+    if time_range != 0:
+        last_day = df['Date'].max()
+        time_range = last_day - pd.Timedelta(days=time_range)
+        return df[df['Date'] > time_range]
+    else:
+        return df
 
 
 def sumurize_by_country(df):
@@ -23,12 +29,8 @@ def sumurize_by_country(df):
     return df.loc[:, usefull_columns].reset_index()
 
 
-def get_daily_case(df, tabs_type):
-    daily_cases = df.set_index('Date')
-    daily_cases = daily_cases[tabs_type].diff()
-    return daily_cases.fillna(0)
-
-
-def format_date(str_date, date_format):
-    date = parse(str_date)
-    return date.strftime(date_format)
+def get_daily_case(df):
+    daily_cases = df.set_index(['Date', 'State'])
+    daily_cases = daily_cases['Confirmed'].diff().fillna(0)
+    daily_cases[daily_cases < 0] = 0
+    return daily_cases
