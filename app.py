@@ -210,8 +210,8 @@ def global_update(start_date, end_date, tabs_type, country_dropdown):
     filtered_df = covid19.pipe(filter_df, start_date,
                                end_date, country_dropdown)
     report_by_country = sumurize_by_country(filtered_df)
-    sum_of_cases = filtered_df['Confirmed'].sum()
-    sum_of_deaths = filtered_df['Death'].sum()
+    sum_of_cases = report_by_country['Confirmed'].sum()
+    sum_of_deaths = report_by_country['Death'].sum()
 
     # colors and legend depending on tabs
     if tabs_type == 'Death':
