@@ -180,7 +180,6 @@ def global_update(countries, time_range):
 
     # MAP
     # --------------------------------------------------------
-    # df_map = filter_by_dates(covid19, start_date, end_date)
     df_map = filter_by_dates(covid19, time_range)
     df_map = sumurize_by_country(df_map)
     df_map = df_map.set_index('State')
@@ -234,36 +233,32 @@ def global_update(countries, time_range):
 
         for c in country_order:
             country_daily_cases = daily_cases.loc[:, c]
-            country_daily_cases = country_daily_cases.resample('7D').sum()
-            country_daily_cases = country_daily_cases[:-1]
+            country_daily_cases = country_daily_cases.rolling(
+                7, min_periods=3).mean()
 
             virality_plot.add_traces(
                 go.Scatter(
-                    x=country_daily_cases.index,
+                    x=country_daily_cases.index.get_level_values('Date'),
                     y=country_daily_cases,
                     name=c,
                     customdata=country_daily_cases,
-                    hovertemplate="%{customdata:.2s} cases" +
-                    "<br> 7-day average ",
+                    hovertemplate="%{customdata:.2s} cases",
                     fill='tozeroy',
-                    line_shape='spline'
                 )
             )
 
-    # global cases
+    # Worldwide
     else:
         daily_cases = daily_cases.groupby('Date').sum()
-        daily_cases = daily_cases.resample('7D').sum()
-        daily_cases = daily_cases[:-1]
+        daily_cases = daily_cases.rolling(7, min_periods=3).mean()
         virality_plot = go.Figure(
             go.Scatter(
                 x=daily_cases.index,
                 y=daily_cases,
-                hovertemplate="%{y:.2s} cases" + "<br> 7-day average ",
+                hovertemplate="%{y:.2s} cases",
                 marker_color=BLUE,
-                name="Monde",
+                name="WorldWide",
                 fill='tozeroy',
-                line_shape='spline',
             )
         )
     # figure design

@@ -31,6 +31,6 @@ def sumurize_by_country(df):
 
 def get_daily_case(df):
     daily_cases = df.set_index(['Date', 'State'])
-    daily_cases = daily_cases['Confirmed'].diff().fillna(0)
+    daily_cases = daily_cases['Confirmed'].groupby('State').diff().fillna(0)
     daily_cases[daily_cases < 0] = 0
     return daily_cases
