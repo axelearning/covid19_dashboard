@@ -1,125 +1,92 @@
-body{
-    background-color: #FBFBFB;
-    margin: 25px;
+body {
+  background-color: #FBFBFB;
+  margin: 20px 10px;
+  color: #2C2C31;
+}
+body .header {
+  text-align: center;
+}
+body .header h1 {
+  font-size: 1.8em;
+}
+body .header #time_dropdown {
+  padding: 4px 0px;
+}
+body .header #country_dropdown .Select-value {
+  color: #2C2C31;
+  border: 0px solid #79797928;
+  background: #2c2c311f;
+}
+body .header #country_dropdown .Select-value-icon {
+  border-right: 0px;
+}
+body .header #country_dropdown .Select-value-icon:hover {
+  color: red;
+  background-color: rgba(255, 0, 0, 0.178);
+}
+body .header #one_line_report {
+  font-size: 1.2em;
+  padding-top: 10px;
+}
+body .cards .card {
+  padding: 2px;
+  margin: 20px 0;
+  height: 70vh;
+  border: 0.1px solid #79797928;
 }
 
-.countainer{
-    height: 100vh;
-}
-
-.header{
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-}
-
-
-/* TITLE */
-.title{
-    color: #2C2C31;
-    font-size: 60px;
-    text-align: center;
-    justify-content: center;
-    margin: 25px;
-}
-
-/* DROPDOWN */
-.filters{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    color: #2C2C31;
-}
-#country_dropdown{
-    width: 40%;
-    color: #2C2C31;
-    margin-right: 5px;
-}
-
-#country_dropdown .Select-value {
-    color: #2C2C31;
-    border: 0px solid #79797928;
-    background: #2c2c311f;
+@media (min-width: 700px) {
+  body {
+    margin: 25px 75px;
   }
-
-#country_dropdown .Select-menu-outer {
-    color: #2C2C31;
-    background: white;
-  }  
-
-#country_dropdown .Select-value-icon:hover {
-    color: red;
-  }  
-#country_dropdown .Select-value-icon {
-    border-right:0px;
+  body .header h1 {
+    font-size: 3em;
+    margin-bottom: 30px;
   }
-
-#time_dropdown{
-    /* margin: auto; */
-    width: 20%;
-    color: #2C2C31;
-}
-
-
-.Cards-container{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.card{
-    background-color: white;
-    border: 0.2px solid #79797928;
-    margin: 0px 20px 20px 20px;
-    padding: 2px;
-}
-
-.card[id=detailed_plot]{
-    background-color: white;
-    border: 0.2px solid #79797928;
-    margin: 10px;
-    padding: 2px;
-}
-
-.counter-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.counter-card{
-    display: flex;
-    justify-content: center;
+  body .header .filters {
+    display: grid;
+    grid-template-columns: 75% 25%;
     align-items: center;
-    flex-direction: column;
-    background-color: white;
-    border: 0.2px solid #79797928;
-    border-radius: .25rem;
-    padding: 20px;
-    margin: 10px;
+    max-width: 700px;
+    margin: auto;
+  }
+  body .header .filters #country_dropdown, body .header .filters #time_dropdown {
+    margin: 0px 5px;
+  }
+  body .header #one_line_report {
+    font-size: 1.8em;
+  }
+  body .cards {
+    max-width: 700px;
+    margin: auto;
+  }
+}
+@media only screen and (min-width: 1050px) {
+  body {
+    margin: 25px 50px;
+  }
+  body .header {
+    height: 28vh;
+  }
+  body .header h1 {
+    font-size: 4em;
+    margin-bottom: 30px;
+  }
+  body .header #one_line_report {
+    font-size: 2em;
+    margin-top: 25px;
+  }
+  body .cards {
+    max-width: none;
+  }
+  body .cards #first_row {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  body .cards .card {
+    margin: 20px;
+    height: 65vh;
+  }
 }
 
-
-/* .Number-deaths{
-    color: #ed1d30;
-}
-
-.Number-cases{
-    color: #2e72ff;
-} */
-
-#one_line_report{
-    text-align: center;
-    font-size: 25px;
-    margin-top: 20px;
-    color: #2C2C31;
-    font-family: 'Inter', 'Arial';
-}
-
-
-
-
-
-
-
-
-
+/*# sourceMappingURL=style.css.map */

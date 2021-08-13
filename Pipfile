@@ -11,6 +11,7 @@ python-dotenv = "*"
 dash-bootstrap-components = "*"
 flask-caching = "*"
 gunicorn = "*"
+planar = "*"
 
 [dev-packages]
 

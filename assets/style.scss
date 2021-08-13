@@ -1,0 +1,124 @@
+$BACKGROUND_COLOR : #FBFBFB;
+$FONT_COLOR: #2C2C31;
+
+body{
+    background-color: $BACKGROUND_COLOR;
+    margin: 20px 10px;
+    color: $FONT_COLOR;
+
+    .header{
+        text-align: center;
+
+        h1{
+            font-size: 1.8em;
+        }
+    
+        #time_dropdown{
+            padding: 4px 0px;
+        }
+        
+        #country_dropdown{
+            .Select-value {
+                color: #2C2C31;
+                border: 0px solid #79797928;
+                background: #2c2c311f;
+    
+            }
+    
+            .Select-value-icon {
+                border-right:0px;
+                &:hover {
+                    color: red;
+                    background-color: rgba(255, 0, 0, 0.178);
+                } 
+            }
+        }
+        
+        #one_line_report{
+            font-size: 1.2em;
+            padding-top: 10px;
+        }
+    }
+    
+    .cards{
+        .card{
+            padding: 2px;
+            margin: 20px 0;
+            height: 70vh;
+            border: 0.1px solid #79797928;
+        }
+    }
+}
+
+
+
+@media (min-width: 700px){
+    body{
+        margin: 25px 75px;
+        .header{
+            h1{
+                font-size: 3em;
+                margin-bottom: 30px;
+            }
+
+            .filters{
+                display: grid;
+                grid-template-columns: 75% 25%;
+                align-items: center;
+                max-width: 700px;
+                margin: auto;
+        
+                #country_dropdown, #time_dropdown{
+                    margin: 0px 5px;
+                }
+            }
+
+            #one_line_report{
+                font-size: 1.8em;
+            }
+        }
+
+        .cards{
+            max-width: 700px;
+            margin: auto;
+        }
+    }
+}
+
+ @media only screen and (min-width: 1050px){
+     body{
+         margin: 25px 50px;
+
+        .header{
+            height: 28vh;
+            h1{
+                font-size: 4em;
+                margin-bottom: 30px;
+            }
+
+            #one_line_report{
+                font-size: 2em;
+                margin-top: 25px;
+            }
+        }
+
+        .cards{
+            max-width: none;
+            #first_row{
+                display: grid;
+                grid-template-columns: 50% 50%;
+            }
+
+            .card{
+                margin: 20px;
+                height: 65vh;
+            }
+        }
+
+
+    }
+ }
+
+
+
+

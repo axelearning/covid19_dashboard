@@ -2,7 +2,6 @@ from flask_caching import Cache
 from helper.utils import prettify_number
 from helper.data_preparation import filter_by_dates, sumurize_by_country, filter_df, get_daily_case
 from data.collect_data import collect_data
-import helper.dash_utilities as du
 import collections
 import os
 from dotenv import load_dotenv
@@ -28,7 +27,7 @@ MAPBOX_TOKEN = os.environ.get('MAPBOX_TOKEN')
 
 DEFAULT_MARGIN = dict(l=10, r=10, t=10, b=10)
 
-EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP, "assets/style.css"]
+EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP, "assets/test.css"]
 app = Dash(__name__, external_stylesheets=EXTERNAL_STYLESHEETS,  meta_tags=[
            {"name": "viewport", "content": "width=device-width, initial-scale=1"}])
 server = app.server
@@ -65,11 +64,6 @@ colors = px.colors.qualitative.Plotly * int(len(countries)/len(colors)+1)
                                             LAYOUT
    -------------------------------------------------------------------------------------------
 '''
-time_button = html.Div(
-    children=[
-        html.Button('14 days', id='forteen_day', className='button'),
-        html.Button('All time', id='all_time', className='button')],
-    className='header')
 
 title = html.H1('Spreading of COVID19 🦠', className='title')
 
@@ -101,6 +95,8 @@ one_line_report = dcc.Markdown(
     id='one_line_report'
 )
 
+header = html.Div([title, filters, one_line_report], className='header')
+
 remove_buton = ["resetViewMapbox", "", "toImage", "", "", "toggleHover"]
 MAP_CONFIG = {'modeBarButtonsToRemove': remove_buton,
               'showAxisDragHandles': False, "displayModeBar": True, "displaylogo": False}
@@ -111,19 +107,14 @@ card_virality = dcc.Graph(
     id="virality_plot", config=DASH_CONFIG, className='card')
 detailed_pot = dcc.Graph(id="detailed_plot",
                          config=DASH_CONFIG, className='card')
-cards = html.Div(
-    children=[
-        card_map,
-        card_virality,
-        detailed_pot,
-    ],
-    className='Cards-container')
+
+first_row = html.Div([card_map, card_virality], id='first_row')
+cards = html.Div([first_row, detailed_pot],
+                 className='cards')
+
 
 app.layout = html.Div([
-    # time_button,
-    title,
-    filters,
-    one_line_report,
+    header,
     cards
 ])
 
