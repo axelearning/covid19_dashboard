@@ -5,7 +5,7 @@ Les données sont récuperer quotidiennement depuis ce [répertoire](https://git
 
 <h3 align="left">
   <span>👉 </span>
-  <a href="URL">voir le dashboard</a>
+  <a href="https://dashboard-covid19-ar.herokuapp.com/">voir le dashboard</a>
 </h3>
 <br>
 
