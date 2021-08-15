@@ -41,7 +41,7 @@ body .cards .card {
   }
   body .header h1 {
     font-size: 3em;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   body .header .filters {
     display: grid;
@@ -65,16 +65,12 @@ body .cards .card {
   body {
     margin: 25px 50px;
   }
-  body .header {
-    height: 28vh;
-  }
   body .header h1 {
     font-size: 4em;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
   }
   body .header #one_line_report {
     font-size: 2em;
-    margin-top: 25px;
   }
   body .cards {
     max-width: none;
