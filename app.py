@@ -56,8 +56,8 @@ countries = covid19['State'].unique()
 RED = '#ed1d30'
 BLUE = '#2e72ff'
 GREY = "#6c757d"
-colors = px.colors.qualitative.Plotly
-colors = px.colors.qualitative.Plotly * int(len(countries)/len(colors)+1)
+COLORS = px.colors.qualitative.Plotly
+COLORS = px.colors.qualitative.Plotly * int(len(countries)/len(COLORS)+1)
 
 
 '''-------------------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ app.layout = html.Div([
                                             INTERACT
    -------------------------------------------------------------------------------------------
 '''
-clicked_country = []
+selected_country = []
 
 
 @app.callback(
@@ -133,22 +133,22 @@ clicked_country = []
         Input('maps', 'selectedData')
     ]
 )
-def update_dropwdown(click, selected):
+def map_selection(click, selected):
     context = dash.callback_context
     condition = context.triggered[0]["prop_id"].split(".")[-1]
-    global clicked_country
+    global selected_country
 
     if condition == "clickData":
-        clicked_country.append(click["points"][0]["text"])
+        selected_country.append(click["points"][0]["text"])
         # delete the duplicate clicked countries
-        clicked_country = [country for country, count in collections.Counter(
-            clicked_country).items() if count <= 1]
-        return clicked_country
+        selected_country = [country for country, count in collections.Counter(
+            selected_country).items() if count <= 1]
+        return selected_country
 
     if condition == "selectedData":
         return [country["text"] for country in selected["points"]]
     # reset the list
-    clicked_country = []
+    selected_country = []
     return None
 
 
@@ -173,10 +173,10 @@ def global_update(countries, time_range):
     daily_cases = get_daily_case(filtered_df)
 
     # link clicked country and country dropdown to have a smooth interactive clicking map
-    global clicked_country
-    clicked_country = countries
-    if not clicked_country:
-        clicked_country = []
+    global selected_country
+    selected_country = countries
+    if not selected_country:
+        selected_country = []
 
     # MAP
     # --------------------------------------------------------
@@ -186,11 +186,12 @@ def global_update(countries, time_range):
 
     # Colorize marker
     if countries:
-        country_order = df_map.loc[countries].sort_values(
-            by='Confirmed').index
+        # country_order = df_map.loc[countries].sort_values(
+        # by = 'Confirmed').index
         df_map['marker_color'] = GREY
-        df_map.loc[country_order,
-                   'marker_color'] = colors[:len(countries)]
+        df_map.loc[countries,
+                   'marker_color'] = COLORS[: len(countries)]
+
     else:
         df_map['marker_color'] = BLUE
 
@@ -231,7 +232,7 @@ def global_update(countries, time_range):
     if countries:
         virality_plot = go.Figure()
 
-        for c in country_order:
+        for c in countries:
             country_daily_cases = daily_cases.loc[:, c]
             country_daily_cases = country_daily_cases.rolling(
                 7, min_periods=3).mean()
@@ -277,7 +278,7 @@ def global_update(countries, time_range):
         global_evolution = filtered_df.groupby(
             ['Date', 'State']).sum().reset_index(level='Date')
         detailed_plot = go.Figure()
-        for c in country_order:
+        for c in countries:
             detailed_plot.add_traces(
                 go.Scatter(
                     x=global_evolution.loc[[c], 'Date'].map(
