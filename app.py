@@ -257,15 +257,15 @@ def global_update(countries, time_range):
                 y=daily_cases,
                 hovertemplate="%{y:.2s} cases",
                 marker_color=BLUE,
-                name="WorldWide",
+                name="World Wide",
                 fill='tozeroy',
             )
         )
     # figure design
     virality_plot.update_yaxes(
-        showgrid=False, nticks=5, showticklabels=False, )
+        showgrid=False, nticks=5, showticklabels=False, fixedrange=True)
     virality_plot.update_xaxes(
-        showline=True, nticks=5, showgrid=True, zeroline=False)
+        showline=True, nticks=5, showgrid=True, zeroline=False, fixedrange=True)
     virality_plot.update_layout(
         hovermode="x", showlegend=False, margin=DEFAULT_MARGIN)
 
@@ -287,8 +287,10 @@ def global_update(countries, time_range):
                     name=c
                 )
             )
-            detailed_plot.update_yaxes(showline=True, nticks=5)
-            detailed_plot.update_xaxes(showline=False, nticks=5, showgrid=True)
+            detailed_plot.update_yaxes(
+                showline=True, nticks=5, fixedrange=True)
+            detailed_plot.update_xaxes(
+                showline=False, nticks=5, showgrid=True, fixedrange=True)
             detailed_plot.update_layout(
                 hovermode="x", margin=DEFAULT_MARGIN, showlegend=False)
 
@@ -324,8 +326,9 @@ def global_update(countries, time_range):
                                     barmode="overlay", margin=dict(l=50, r=20, t=20, b=20, pad=10))
         detailed_plot.update_traces(textposition='auto', orientation='h')
         detailed_plot.update_xaxes(
-            showgrid=False, showticklabels=False, zeroline=False, showline=False)
-        detailed_plot.update_yaxes(showgrid=False, showline=False)
+            showgrid=False, showticklabels=False, zeroline=False, showline=False, fixedrange=True)
+        detailed_plot.update_yaxes(
+            showgrid=False, showline=False, fixedrange=True)
 
 #     # COUNTERS
 #     # --------------------------------------------------------
