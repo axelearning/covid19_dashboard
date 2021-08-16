@@ -17,7 +17,7 @@ Les données sont récuperer quotidiennement depuis ce [répertoire](https://git
 ## **Qu'est ce que j'ai appris ?**
 - créer des visualisation dynamique avec Dash et Plotly
 - déployer mon application sur heroku
-- utiliser Bootstrap et Css afin d'embelir le dashboard
+- utiliser Css afin de créer un dashboard responsif
 
 ## **Pourquoi ce projet ?**
 En plein pendant le premier confinement (Mars 2020), j'ai decidé de créer un tableau de bord pour permettre à mes porches et moi de pouvoir explorer l'évolution du virus. 
