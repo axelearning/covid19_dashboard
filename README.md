@@ -1,7 +1,7 @@
 # Covid19 Dashboard 🦠
 Through this project I designed a dashboard that tracks the propagation of covid19. 
 
-The data are retrieved daily from this [directory](https://github.com/CSSEGISandData/COVID-19) Github. Then they are processed to feed the different visualization
+The data are retrieved daily from this [directory](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series) Github. Then they are processed to feed the different visualization
 
 <h3 align="left">
   <span>👉 </span>
